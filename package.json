@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "package": "node package.js",
+        "pack": "node pack.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Jonas Schwendener",
