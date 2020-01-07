@@ -7,6 +7,10 @@ const app = express()
  * Server port
  */
 const port = process.env.PORT || 3010
+
+/**
+ * Comma seperated list of allowed IP addresses
+ */
 const allowedOrigins = process.env.ALLOWED_ORIGINS || '::1,127.0.0.1'
 
 const AllowedOriginMiddleware = (req, res, next) => {
