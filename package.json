@@ -1,0 +1,21 @@
+{
+    "name": "orchestra-pdf",
+    "version": "1.0.0",
+    "description": "Orchestra PDF generation service",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "package": "node package.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Jonas Schwendener",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "express": "^4.17.1",
+        "puppeteer": "^2.0.0"
+    },
+    "devDependencies": {
+        "archiver": "^3.1.1"
+    }
+}
