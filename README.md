@@ -3,6 +3,7 @@ A small PDF generation service for internal use, built upon [puppeteer](https://
 
 ## Usage
 The server only listens for incoming requests on the root `/`.
+
 URL | Desc
 --- | ---
 `GET /` | Use to render a given URL. Provide a URL to be rendered as the `url` query parameter
