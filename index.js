@@ -45,7 +45,8 @@ app.get('/', (req, res) => {
     PDF.generate(url, title).then(file => {
         res.set({ 
             'Content-Type': 'application/pdf',
-            'Content-Length': file.length
+            'Content-Length': file.length,
+            'Content-Disposition': `inline; filename="${title || 'file'}.pdf"`
         }).send(file)
     }).catch(err => {
         res.status(500).send({ error: err.message })
@@ -64,7 +65,8 @@ app.post('/', (req, res) => {
     PDF.generate(null, title, contents).then(file => {
         res.set({ 
             'Content-Type': 'application/pdf',
-            'Content-Length': file.length
+            'Content-Length': file.length,
+            'Content-Disposition': `inline; filename="${title || 'file'}.pdf"`
         }).send(file)
     }).catch(err => {
         res.status(500).send({ error: err.message })
