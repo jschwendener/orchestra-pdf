@@ -3,7 +3,7 @@ const archiver = require('archiver')
 
 const outputPath = './dist/orchestra-pdf.zip'
 const filesToPack = [
-    '.ebextensions',
+    '.ebextensions/chromiumpackages.config',
     '.npmrc',
     'index.js',
     'package-lock.json',

@@ -11,22 +11,27 @@ const port = process.env.PORT || 3010
 /**
  * Comma seperated list of allowed IP addresses
  */
-const allowedOrigins = process.env.ALLOWED_ORIGINS || '::1,127.0.0.1'
+// const allowedOrigins = process.env.ALLOWED_ORIGINS || '::1,127.0.0.1'
 
-const AllowedOriginMiddleware = (req, res, next) => {
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+// const AllowedOriginMiddleware = (req, res, next) => {
+//     let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+//     const timestamp = new Date().toISOString()
+
+//     if (ip.includes(',')) {
+//         ip = ip.split(', ')[0]
+//     }
     
-    if (!allowedOrigins.split(',').includes(ip)) {
-        console.log('Blocking IP: ' + ip)
-        res.status(403).send({ error: 'Forbidden' })
-        return
-    }
+//     if (!allowedOrigins.split(',').includes(ip)) {
+//         // console.log(`[${timestamp}] Blocking IP: ${ip}`)
+//         res.send({ notice: 'Forbidden ' + ip })
+//         return
+//     }
 
-    console.log('Allowing IP: ' + ip)
-    next()
-}
+//     console.log(`[${timestamp}] Allowing IP: ${ip}`)
+//     next()
+// }
 
-app.use(AllowedOriginMiddleware)
+// app.use(AllowedOriginMiddleware)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 

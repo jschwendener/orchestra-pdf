@@ -7,7 +7,11 @@ const puppeteer = require('puppeteer')
  * @param {string} url URL to generate a PDF from
  */
 async function generate(url = null, title = '', contents = null) {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/google-chrome-stable',
+        headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']
+    })
+    
     const page = await browser.newPage()
 
     if (url) {
