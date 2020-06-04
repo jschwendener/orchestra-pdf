@@ -20,7 +20,7 @@ const port = 3010
 //     if (ip.includes(',')) {
 //         ip = ip.split(', ')[0]
 //     }
-    
+
 //     if (!allowedOrigins.split(',').includes(ip)) {
 //         // console.log(`[${timestamp}] Blocking IP: ${ip}`)
 //         res.send({ notice: 'Forbidden ' + ip })
@@ -32,8 +32,8 @@ const port = 3010
 // }
 
 // app.use(AllowedOriginMiddleware)
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }))
+app.use(bodyParser.json({ limit: '50mb' }))
 
 /**
  * PDF generation route
@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
     }
 
     PDF.generate(url, { title }).then(file => {
-        res.set({ 
+        res.set({
             'Content-Type': 'application/pdf',
             'Content-Length': file.length,
             'Content-Disposition': `inline; filename="${title || 'file'}.pdf"`
@@ -70,7 +70,7 @@ app.post('/', (req, res) => {
     }
 
     PDF.generate(null, contents, { title, header, footer }).then(file => {
-        res.set({ 
+        res.set({
             'Content-Type': 'application/pdf',
             'Content-Length': file.length,
             'Content-Disposition': `inline; filename="${title || 'file'}.pdf"`
