@@ -9,9 +9,10 @@ const puppeteer = require('puppeteer')
 async function generate(url = null, title = '', contents = null) {
     const browser = await puppeteer.launch({
         executablePath: '/usr/bin/google-chrome-stable',
-        headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']
+        headless: true, 
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
     })
-    
+
     const page = await browser.newPage()
 
     if (url) {
@@ -20,9 +21,10 @@ async function generate(url = null, title = '', contents = null) {
         await page.setContent(contents, { waitUntil: 'networkidle0' })
     }
 
-    const defaultHeaderFooterStyles = `display: flex; justify-content: space-between; width: 100%; margin: 0 42px; font-size: 8px; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';`
+    const defaultHeaderFooterStyles = `display: flex; justify-content: space-between; width: 100%; margin: 0 50px; font-size: 8px; font-family: Archivo,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';`
     const pdf = await page.pdf({
         format: 'A4',
+        printBackground: true,
         margin: {
             top: 80,
             bottom: 80

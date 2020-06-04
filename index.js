@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
     const title = req.query.title
 
     if (!url) {
-        res.status(422).send({ error: 'Missing parameter URL' })
+        res.status(200).send({ version: 1.0 })
         return
     }
 
