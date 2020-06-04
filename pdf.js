@@ -6,9 +6,12 @@ const puppeteer = require('puppeteer')
  * 
  * @param {string} url URL to generate a PDF from
  */
-async function generate(url = null, title = '', contents = null) {
+async function generate(url = null, contents = null, options = {}) {
+    const title = options.title || ''
+    const header = options.header || ''
+    const footer = options.footer || ''
+
     const browser = await puppeteer.launch({
-        executablePath: '/usr/bin/google-chrome-stable',
         headless: true, 
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     })
@@ -26,17 +29,19 @@ async function generate(url = null, title = '', contents = null) {
         format: 'A4',
         printBackground: true,
         margin: {
-            top: 80,
-            bottom: 80
+            top: 180,
+            bottom: 80,
+            left: 100,
+            right: 100,
         },
         displayHeaderFooter: true,
-        headerTemplate: `
+        headerTemplate: header || `
             <div style="${defaultHeaderFooterStyles}">
                 <div>${title}</div>
                 <div></div>
             </div>
         `,
-        footerTemplate: `
+        footerTemplate: footer || `
             <div style="${defaultHeaderFooterStyles}">
                 <div class="title"></div>
                 <div><span class="pageNumber"></span>/<span class="totalPages"></span></div>

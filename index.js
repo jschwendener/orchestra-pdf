@@ -6,7 +6,7 @@ const app = express()
 /**
  * Server port
  */
-const port = process.env.PORT || 3010
+const port = 3010
 
 /**
  * Comma seperated list of allowed IP addresses
@@ -43,11 +43,11 @@ app.get('/', (req, res) => {
     const title = req.query.title
 
     if (!url) {
-        res.status(200).send({ version: 1.0 })
+        res.status(200).send({ version: 1.2 })
         return
     }
 
-    PDF.generate(url, title).then(file => {
+    PDF.generate(url, { title }).then(file => {
         res.set({ 
             'Content-Type': 'application/pdf',
             'Content-Length': file.length,
@@ -61,13 +61,15 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     const title = req.body.title
     const contents = req.body.contents
+    const header = req.body.header || null
+    const footer = req.body.footer || null
 
     if (!contents) {
         res.status(422).send({ error: 'Missing parameter contents' })
         return
     }
 
-    PDF.generate(null, title, contents).then(file => {
+    PDF.generate(null, contents, { title, header, footer }).then(file => {
         res.set({ 
             'Content-Type': 'application/pdf',
             'Content-Length': file.length,
