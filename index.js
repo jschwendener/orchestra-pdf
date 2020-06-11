@@ -59,6 +59,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
+    const options = req.body.options
     const title = req.body.title
     const contents = req.body.contents
     const header = req.body.header || null
@@ -69,7 +70,7 @@ app.post('/', (req, res) => {
         return
     }
 
-    PDF.generate(null, contents, { title, header, footer }).then(file => {
+    PDF.generate(null, contents, { title, header, footer, ...options }).then(file => {
         res.set({
             'Content-Type': 'application/pdf',
             'Content-Length': file.length,
