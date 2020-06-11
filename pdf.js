@@ -29,10 +29,10 @@ async function generate(url = null, contents = null, options = {}) {
         format: 'A4',
         printBackground: true,
         margin: {
-            top: 180,
-            bottom: 20,
-            left: 0,
-            right: 0,
+            top: options.marginTop || 180,
+            bottom: options.marginBottom || 40,
+            left: options.marginLeft || 0,
+            right: options.marginRight || 0,
         },
         displayHeaderFooter: true,
         headerTemplate: header || `
