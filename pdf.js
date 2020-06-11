@@ -29,10 +29,10 @@ async function generate(url = null, contents = null, options = {}) {
         format: 'A4',
         printBackground: true,
         margin: {
-            top: options.marginTop || 180,
-            bottom: options.marginBottom || 80,
-            left: options.marginLeft || 100,
-            right: options.marginRight || 100,
+            top: 180,
+            bottom: 20,
+            left: 0,
+            right: 0,
         },
         displayHeaderFooter: true,
         headerTemplate: header || `
@@ -41,12 +41,7 @@ async function generate(url = null, contents = null, options = {}) {
                 <div></div>
             </div>
         `,
-        footerTemplate: footer || `
-            <div style="${defaultHeaderFooterStyles}">
-                <div class="title"></div>
-                <div><span class="pageNumber"></span>/<span class="totalPages"></span></div>
-            </div>
-        `,
+        footerTemplate: '&nbsp;',
     })
 
     await browser.close()
