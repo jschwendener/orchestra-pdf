@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
     const title = req.query.title
 
     if (!url) {
-        res.status(200).send({ version: 1.3 })
+        res.status(200).send({ version: 1.4 })
         return
     }
 
